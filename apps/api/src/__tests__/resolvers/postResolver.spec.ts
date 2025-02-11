@@ -1,11 +1,11 @@
 import { Post, PrismaClient, User } from "@prisma/client"
 import { GraphQLError } from "graphql"
-import { MyContext } from "../context"
-import { postResolvers } from "../resolvers/postResolvers"
-import { mockPosts } from "./mocks/post"
-import { mockUsers } from "./mocks/user"
-import { deleteAllData } from "./utils/prisma"
-import { getUser } from "./utils/user"
+import { MyContext } from "../../context"
+import { postResolvers } from "../../resolvers/postResolvers"
+import { mockPosts } from "../mocks/post"
+import { mockUsers } from "../mocks/user"
+import { deleteAllData } from "../utils/prisma"
+import { getUser } from "../utils/user"
 
 const prisma = new PrismaClient()
 

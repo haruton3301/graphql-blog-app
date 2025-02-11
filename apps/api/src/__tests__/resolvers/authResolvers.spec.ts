@@ -1,11 +1,11 @@
 import bcrypt from "bcryptjs"
 import { GraphQLError } from "graphql"
 import jwt from "jsonwebtoken"
-import { prisma } from "../libs/prisma"
-import { secrets } from "../libs/secrets"
-import { authResolvers } from "../resolvers/authResolvers"
-import { mockUsers } from "./mocks/user"
-import { deleteAllData } from "./utils/prisma"
+import { prisma } from "../../libs/prisma"
+import { secrets } from "../../libs/secrets"
+import { authResolvers } from "../../resolvers/authResolvers"
+import { mockUsers } from "../mocks/user"
+import { deleteAllData } from "../utils/prisma"
 
 const mockUser = mockUsers[0]
 
