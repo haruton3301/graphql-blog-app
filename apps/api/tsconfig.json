@@ -8,5 +8,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["vitest/globals"]
-  }
+  },
+  "include": ["src/**/*"]
 }
