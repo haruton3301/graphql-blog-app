@@ -26,6 +26,8 @@ export const typeDefs = `
     register(name: String!, email: String!, password: String!): String!
     login(email: String!, password: String!): String!
     createPost(title: String!, content: String!): Post!
+    updatePost(postId: ID!, title: String, content: String): Post!
+    deletePost(postId: ID!): Boolean!
     likePost(postId: ID!): Boolean!
   }
 `

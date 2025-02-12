@@ -1,9 +1,8 @@
 import { GraphQLError } from "graphql"
-import { MyContext } from "../context"
-import { prisma } from "../libs/prisma"
-import { requireAuth } from "./utils/auth"
+import { MyContext } from "../../context"
+import { prisma } from "../../libs/prisma"
 
-export const postResolvers = {
+export const postQueries = {
   posts: async (
     _: any,
     {
@@ -56,48 +55,6 @@ export const postResolvers = {
       likedByMe: userId
         ? post.likes.some((like) => like.userId === userId)
         : false,
-    }
-  },
-
-  createPost: async (
-    _: any,
-    { title, content }: { title: string; content: string },
-    context: MyContext,
-  ) => {
-    const userId = requireAuth(context)
-
-    if (!title || !content) {
-      throw new GraphQLError("Illegal arguments")
-    }
-
-    return prisma.post.create({ data: { title, content, authorId: userId } })
-  },
-
-  likePost: async (
-    _: any,
-    { postId }: { postId: string },
-    context: MyContext,
-  ) => {
-    const userId = requireAuth(context)
-
-    const like = await prisma.like.findUnique({
-      where: { userId_postId: { userId, postId } },
-    })
-
-    if (like) {
-      await prisma.like.delete({ where: { id: like.id } })
-      await prisma.post.update({
-        where: { id: postId },
-        data: { likeCount: { decrement: 1 } },
-      })
-      return false
-    } else {
-      await prisma.like.create({ data: { userId, postId } })
-      await prisma.post.update({
-        where: { id: postId },
-        data: { likeCount: { increment: 1 } },
-      })
-      return true
     }
   },
 }

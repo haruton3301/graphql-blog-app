@@ -1,14 +1,15 @@
 import { authResolvers } from "./authResolvers"
-import { postResolvers } from "./postResolvers"
+import { postMutations } from "./post/mutations"
+import { postQueries } from "./post/queries"
 import { userResolvers } from "./userResolvers"
 
 export const resolvers = {
   Query: {
-    ...postResolvers,
+    ...postQueries,
     ...userResolvers,
   },
   Mutation: {
     ...authResolvers,
-    ...postResolvers,
+    ...postMutations,
   },
 }
