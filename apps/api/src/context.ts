@@ -1,5 +1,5 @@
 import { ContextFunction } from "@apollo/server"
-import { ExpressContextFunctionArgument } from "@apollo/server/dist/esm/express4"
+import { ExpressContextFunctionArgument } from "@apollo/server/express4"
 import jwt from "jsonwebtoken"
 import { secrets } from "./libs/secrets"
 
