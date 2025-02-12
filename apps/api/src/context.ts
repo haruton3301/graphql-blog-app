@@ -11,7 +11,8 @@ export const context: ContextFunction<
   [ExpressContextFunctionArgument],
   MyContext
 > = async ({ req }) => {
-  const token = req.headers.authorization || ""
+  const auth = req.headers.authorization || ""
+  const token = auth.split(" ")[1]
   try {
     const decoded = jwt.verify(token, secrets.JWT_SECRET)
     if (decoded && typeof decoded !== "string" && "userId" in decoded) {
@@ -19,7 +20,7 @@ export const context: ContextFunction<
     } else {
       return { userId: null }
     }
-  } catch {
+  } catch (e: any) {
     return { userId: null }
   }
 }
