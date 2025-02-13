@@ -5,3 +5,4 @@ export const mockUser = {
 }
 
 export const mockPassword = "password123"
+export const mockToken = "fake-jwt-token"

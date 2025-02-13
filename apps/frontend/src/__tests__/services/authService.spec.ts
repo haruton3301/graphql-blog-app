@@ -27,12 +27,11 @@ describe("AuthService", () => {
         password: "",
       }
       await expect(authService.register(invalidUser)).rejects.toThrowError(
-        new ApolloError({
-          graphQLErrors: [
-            {
-              message: "Illegal arguments",
-            },
-          ],
+        ApolloError,
+      )
+      await expect(authService.register(invalidUser)).rejects.toThrowError(
+        expect.objectContaining({
+          message: expect.stringContaining("Illegal arguments"),
         }),
       )
     })
@@ -40,13 +39,12 @@ describe("AuthService", () => {
     it("should throw error for invalid email format", async () => {
       await expect(
         authService.register({ ...registerUser, email: "invalid-email" }),
+      ).rejects.toThrowError(ApolloError)
+      await expect(
+        authService.register({ ...registerUser, email: "invalid-email" }),
       ).rejects.toThrowError(
-        new ApolloError({
-          graphQLErrors: [
-            {
-              message: "Invalid email format",
-            },
-          ],
+        expect.objectContaining({
+          message: expect.stringContaining("Invalid email format"),
         }),
       )
     })
@@ -54,13 +52,12 @@ describe("AuthService", () => {
     it("should throw error for duplicate email", async () => {
       await expect(
         authService.register({ ...registerUser, email: "user@example.com" }),
+      ).rejects.toThrowError(ApolloError)
+      await expect(
+        authService.register({ ...registerUser, email: "user@example.com" }),
       ).rejects.toThrowError(
-        new ApolloError({
-          graphQLErrors: [
-            {
-              message: "Email already taken",
-            },
-          ],
+        expect.objectContaining({
+          message: expect.stringContaining("Email already taken"),
         }),
       )
     })
@@ -83,12 +80,11 @@ describe("AuthService", () => {
         password: "",
       }
       await expect(authService.login(invalidParams)).rejects.toThrowError(
-        new ApolloError({
-          graphQLErrors: [
-            {
-              message: "Illegal arguments",
-            },
-          ],
+        ApolloError,
+      )
+      await expect(authService.login(invalidParams)).rejects.toThrowError(
+        expect.objectContaining({
+          message: expect.stringContaining("Illegal arguments"),
         }),
       )
     })
@@ -98,13 +94,12 @@ describe("AuthService", () => {
         email: mockUser.email,
         password: "wrongpassword",
       }
-      await expect(authService.login(incorrectParams)).rejects.toThrow(
-        new ApolloError({
-          graphQLErrors: [
-            {
-              message: "Invalid credentials",
-            },
-          ],
+      await expect(authService.login(incorrectParams)).rejects.toThrowError(
+        ApolloError,
+      )
+      await expect(authService.login(incorrectParams)).rejects.toThrowError(
+        expect.objectContaining({
+          message: expect.stringContaining("Invalid credentials"),
         }),
       )
     })

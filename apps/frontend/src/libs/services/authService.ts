@@ -1,32 +1,24 @@
-import { gql } from "@apollo/client"
-import { LoginParams, RegisterParams } from "../types/auth"
+import {
+  LoginDocument,
+  LoginMutationVariables,
+  RegisterDocument,
+  RegisterMutationVariables,
+} from "@/generated/graphql"
 import { client } from "./client"
 
 export class AuthService {
-  async register(params: RegisterParams): Promise<string> {
-    const REGISTER_MUTATION = gql`
-      mutation Register($name: String!, $email: String!, $password: String!) {
-        register(name: $name, email: $email, password: $password)
-      }
-    `
-
+  async register(params: RegisterMutationVariables): Promise<string> {
     const response = await client.mutate({
-      mutation: REGISTER_MUTATION,
+      mutation: RegisterDocument,
       variables: params,
     })
 
     return response.data.register
   }
 
-  async login(params: LoginParams): Promise<string> {
-    const LOGIN_MUTATION = gql`
-      mutation Login($email: String!, $password: String!) {
-        login(email: $email, password: $password)
-      }
-    `
-
+  async login(params: LoginMutationVariables): Promise<string> {
     const response = await client.mutate({
-      mutation: LOGIN_MUTATION,
+      mutation: LoginDocument,
       variables: params,
     })
 

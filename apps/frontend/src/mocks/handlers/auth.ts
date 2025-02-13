@@ -1,5 +1,5 @@
 import { graphql, HttpResponse, RequestHandler } from "msw"
-import { mockPassword, mockUser } from "../data/auth"
+import { mockPassword, mockToken, mockUser } from "../data/auth"
 import { isValidEmail } from "../utils/mail"
 export const authGraphQLHandlers: RequestHandler[] = [
   graphql.mutation("Register", ({ variables }) => {
@@ -45,7 +45,7 @@ export const authGraphQLHandlers: RequestHandler[] = [
 
     return HttpResponse.json({
       data: {
-        login: "fake-jwt-token",
+        login: mockToken,
       },
     })
   }),

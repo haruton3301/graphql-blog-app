@@ -5,6 +5,7 @@ import cors from "cors"
 import express from "express"
 import http from "http"
 import { context, MyContext } from "./context"
+import { secrets } from "./libs/secrets"
 import { resolvers } from "./resolvers"
 import { typeDefs } from "./schema"
 
@@ -21,7 +22,10 @@ async function startServer() {
   await server.start()
   app.use(
     "/",
-    cors<cors.CorsRequest>(),
+    cors<cors.CorsRequest>({
+      origin: secrets.CLIENT_URL,
+      credentials: true,
+    }),
     express.json({ limit: "50mb" }), // for ApolloServer
     expressMiddleware(server, {
       context,

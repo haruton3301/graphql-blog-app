@@ -21,4 +21,5 @@ export const secrets = {
   API_PORT: validateEnvVar("API_PORT", "string"),
   DATABASE_URL: validateEnvVar("DATABASE_URL", "string"),
   JWT_SECRET: validateEnvVar("JWT_SECRET", "string"),
+  CLIENT_URL: validateEnvVar("CLIENT_URL", "string"),
 }
