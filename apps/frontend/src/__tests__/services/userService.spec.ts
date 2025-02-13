@@ -1,15 +1,11 @@
 import { authService, userService } from "@/libs/services"
 import { removeToken, setToken } from "@/libs/utils/localStorage"
 import { mockPassword, mockUser } from "@/mocks/data/auth"
-import { server } from "@/mocks/setup/server"
 import { ApolloError } from "@apollo/client"
 
-beforeAll(() => server.listen())
 afterEach(() => {
   removeToken()
-  server.resetHandlers()
 })
-afterAll(() => server.close())
 
 describe("UserService", () => {
   it("should fetch the current user", async () => {

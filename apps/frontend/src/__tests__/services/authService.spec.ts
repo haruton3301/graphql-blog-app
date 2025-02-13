@@ -1,11 +1,6 @@
 import { ApolloError } from "@apollo/client"
 import { authService } from "../../libs/services"
 import { mockPassword, mockUser } from "../../mocks/data/auth"
-import { server } from "../../mocks/setup/server"
-
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
 
 describe("AuthService", () => {
   describe("Register", () => {
