@@ -9,6 +9,6 @@ export class UserService {
       fetchPolicy: "network-only",
     })
 
-    return response.data.me
+    return response.data.me ?? null
   }
 }

@@ -25,8 +25,8 @@ export const typeDefs = `
   type Mutation {
     register(name: String!, email: String!, password: String!): String!
     login(email: String!, password: String!): String!
-    createPost(title: String!, content: String!): Post!
-    updatePost(postId: ID!, title: String, content: String): Post!
+    createPost(title: String!, content: String!): Boolean!
+    updatePost(postId: ID!, title: String, content: String): Boolean!
     deletePost(postId: ID!): Boolean!
     likePost(postId: ID!): Boolean!
   }

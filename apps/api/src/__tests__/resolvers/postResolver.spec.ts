@@ -122,14 +122,12 @@ describe("postResolvers", () => {
       const title = "New Post"
       const content = "Content of new post"
 
-      const response = await postMutations.createPost(
-        null,
-        { title, content },
-        { userId: testUsers![0].id } as MyContext,
-      )
+      await postMutations.createPost(null, { title, content }, {
+        userId: testUsers![0].id,
+      } as MyContext)
 
-      const createdPost = await prisma.post.findUnique({
-        where: { id: response.id },
+      const createdPost = await prisma.post.findFirst({
+        orderBy: { createdAt: "desc" },
       })
 
       expect(createdPost).not.toBeNull()
@@ -165,17 +163,14 @@ describe("postResolvers", () => {
       const newTitle = "Updated Title"
       const newContent = "Updated Content"
 
-      const response = await postMutations.updatePost(
+      await postMutations.updatePost(
         null,
         { postId: testPosts![0].id, title: newTitle, content: newContent },
         { userId: testUsers![0].id } as MyContext,
       )
 
-      expect(response.title).toBe(newTitle)
-      expect(response.content).toBe(newContent)
-
-      const updatedPost = await prisma.post.findUnique({
-        where: { id: testPosts![0].id },
+      const updatedPost = await prisma.post.findFirst({
+        orderBy: { updatedAt: "desc" },
       })
 
       expect(updatedPost).not.toBeNull()

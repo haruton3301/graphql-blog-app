@@ -15,7 +15,11 @@ export const postMutations = {
       throw new GraphQLError("Illegal arguments")
     }
 
-    return prisma.post.create({ data: { title, content, authorId: userId } })
+    await prisma.post.create({
+      data: { title, content, authorId: userId },
+    })
+
+    return true
   },
 
   updatePost: async (
@@ -41,13 +45,16 @@ export const postMutations = {
       throw new GraphQLError("Illegal arguments")
     }
 
-    return prisma.post.update({
+    await prisma.post.update({
       where: { id: postId },
       data: {
         title: title ?? existingPost.title,
         content: content ?? existingPost.content,
       },
+      include: { likes: true, author: true },
     })
+
+    return true
   },
 
   deletePost: async (

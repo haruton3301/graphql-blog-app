@@ -8,11 +8,12 @@ const messages = {
   passwordMinimumSizeMessage: "パスワードは6文字以上である必要があります",
   loginSuccessfulMessage: "ログインしました",
   logoutSuccessfulMessage: "ログアウトしました",
-  reportNotFoundMessage: "日報が存在しません",
-  reportCreatedMessage: "日報を作成しました",
-  reportUpdatedMessage: "日報を更新しました",
-  reportDeletedMessage: "日報を削除しました",
-  reportNotExistMessage: "日報がありません",
+
+  postNotFoundMessage: "日報が存在しません",
+  postCreatedMessage: "日報を作成しました",
+  postUpdatedMessage: "日報を更新しました",
+  postDeletedMessage: "日報を削除しました",
+  postNotExistMessage: "日報がありません",
 }
 
 export default messages

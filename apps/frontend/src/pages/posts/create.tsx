@@ -1,20 +1,22 @@
 import Breadcrumbs, { Breadcrumb } from "@/components/common/Breadcrumbs"
 import MetaTitle from "@/components/common/MetaTitle"
-import RegisterForm from "@/components/forms/auth/register"
+import CreatePostForm from "@/components/forms/post/create"
 
-export default function RegisterPage() {
+export default function CreatePostPage() {
   const breadcrumbs: Array<Breadcrumb> = [
     {
-      label: "ユーザー登録",
+      label: "新規投稿作成",
     },
   ]
 
   return (
     <>
-      <MetaTitle title="ユーザー登録" />
+      <MetaTitle title="新規投稿作成" />
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="flex justify-center">
-        <RegisterForm />
+        <div className="w-full max-w-2xl">
+          <CreatePostForm />
+        </div>
       </div>
     </>
   )

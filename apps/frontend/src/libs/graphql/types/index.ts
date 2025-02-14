@@ -29,12 +29,12 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: "Mutation"
-  createPost: Post
+  createPost: Scalars["Boolean"]["output"]
   deletePost: Scalars["Boolean"]["output"]
   likePost: Scalars["Boolean"]["output"]
   login: Scalars["String"]["output"]
   register: Scalars["String"]["output"]
-  updatePost: Post
+  updatePost: Scalars["Boolean"]["output"]
 }
 
 export type MutationCreatePostArgs = {
@@ -124,17 +124,7 @@ export type CreatePostMutationVariables = Exact<{
 
 export type CreatePostMutation = {
   __typename?: "Mutation"
-  createPost: {
-    __typename?: "Post"
-    id: string
-    title: string
-    content: string
-    likeCount: number
-    likedByMe: boolean
-    createdAt: string
-    updatedAt: string
-    author: { __typename?: "User"; id: string; name: string }
-  }
+  createPost: boolean
 }
 
 export type UpdatePostMutationVariables = Exact<{
@@ -145,13 +135,7 @@ export type UpdatePostMutationVariables = Exact<{
 
 export type UpdatePostMutation = {
   __typename?: "Mutation"
-  updatePost: {
-    __typename?: "Post"
-    id: string
-    title: string
-    content: string
-    updatedAt: string
-  }
+  updatePost: boolean
 }
 
 export type DeletePostMutationVariables = Exact<{
@@ -169,12 +153,12 @@ export type LikePostMutationVariables = Exact<{
 
 export type LikePostMutation = { __typename?: "Mutation"; likePost: boolean }
 
-export type GetPostsQueryVariables = Exact<{
+export type PostsQueryVariables = Exact<{
   searchTerm?: InputMaybe<Scalars["String"]["input"]>
   userIdFilter?: InputMaybe<Scalars["String"]["input"]>
 }>
 
-export type GetPostsQuery = {
+export type PostsQuery = {
   __typename?: "Query"
   posts: Array<{
     __typename?: "Post"
@@ -189,11 +173,11 @@ export type GetPostsQuery = {
   }>
 }
 
-export type GetPostQueryVariables = Exact<{
+export type PostQueryVariables = Exact<{
   id: Scalars["ID"]["input"]
 }>
 
-export type GetPostQuery = {
+export type PostQuery = {
   __typename?: "Query"
   post?: {
     __typename?: "Post"

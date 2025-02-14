@@ -12,7 +12,7 @@ export class AuthService {
       variables: params,
     })
 
-    return response.data.register
+    return response.data.register ?? ""
   }
 
   async login(params: LoginMutationVariables): Promise<string> {
@@ -21,6 +21,6 @@ export class AuthService {
       variables: params,
     })
 
-    return response.data.login
+    return response.data.login ?? ""
   }
 }

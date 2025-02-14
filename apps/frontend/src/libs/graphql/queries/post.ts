@@ -1,7 +1,7 @@
 import { gql } from "graphql-tag"
 
-export const GetPostsDocument = gql`
-  query GetPosts($searchTerm: String, $userIdFilter: String) {
+export const PostsDocument = gql`
+  query Posts($searchTerm: String, $userIdFilter: String) {
     posts(searchTerm: $searchTerm, userIdFilter: $userIdFilter) {
       id
       title
@@ -18,8 +18,8 @@ export const GetPostsDocument = gql`
   }
 `
 
-export const GetPostDocument = gql`
-  query GetPost($id: ID!) {
+export const PostDocument = gql`
+  query Post($id: ID!) {
     post(id: $id) {
       id
       title
