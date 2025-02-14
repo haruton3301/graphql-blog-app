@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "daisyui": "^5.0.0-beta.5",
     "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
     "postcss": "^8.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

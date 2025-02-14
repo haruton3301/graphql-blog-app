@@ -1,9 +1,8 @@
+import { LoginDocument, RegisterDocument } from "../graphql/mutations/auth"
 import {
-  LoginDocument,
   LoginMutationVariables,
-  RegisterDocument,
   RegisterMutationVariables,
-} from "@/generated/graphql"
+} from "../graphql/types"
 import { client } from "./client"
 
 export class AuthService {

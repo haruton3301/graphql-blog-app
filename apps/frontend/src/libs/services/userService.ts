@@ -1,4 +1,4 @@
-import { MeDocument } from "@/generated/graphql"
+import { MeDocument } from "@/libs/graphql/queries/user"
 import { User } from "@/libs/types/user"
 import { client } from "./client"
 
