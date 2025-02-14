@@ -6,6 +6,11 @@ import App from "./App.tsx"
 import "./index.css"
 import { AuthProvider } from "./providers/auth.tsx"
 
+if (import.meta.env.DEV && import.meta.env.VITE_MOCK_MODE === "true") {
+  const { worker } = await import("@/mocks/setup/browser")
+  await worker.start({ onUnhandledRequest: "bypass" })
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
