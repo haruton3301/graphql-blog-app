@@ -9,6 +9,7 @@ const messages = {
   loginSuccessfulMessage: "ログインしました",
   logoutSuccessfulMessage: "ログアウトしました",
 
+  NotAuthorizedMessage: "アクセスできません",
   postNotFoundMessage: "日報が存在しません",
   postCreatedMessage: "日報を作成しました",
   postUpdatedMessage: "日報を更新しました",
