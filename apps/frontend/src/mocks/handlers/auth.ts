@@ -1,5 +1,10 @@
 import { graphql, HttpResponse, RequestHandler } from "msw"
-import { mockPassword, mockToken, mockUser } from "../data/auth"
+import {
+  mockExistingUser,
+  mockPassword,
+  mockToken,
+  mockUser,
+} from "../data/auth"
 import { isValidEmail } from "../utils/mail"
 export const authGraphQLHandlers: RequestHandler[] = [
   graphql.mutation("Register", ({ variables }) => {
@@ -17,7 +22,7 @@ export const authGraphQLHandlers: RequestHandler[] = [
       })
     }
 
-    if (email === mockUser.email) {
+    if (email === mockExistingUser.email) {
       return HttpResponse.json({
         errors: [{ message: "Email already taken" }],
       })

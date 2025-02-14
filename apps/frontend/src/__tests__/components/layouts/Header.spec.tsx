@@ -1,26 +1,19 @@
+import { mockedUseNavigate } from "@/__tests__/setup"
 import { Header } from "@/components/layouts/Header"
+import messages from "@/libs/constants/messages"
 import { removeToken, setToken } from "@/libs/utils/localStorage"
 import { mockToken, mockUser } from "@/mocks/data/auth"
 import { AuthProvider } from "@/providers/auth"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
-import { vi } from "vitest"
-
-const mockedUseNavigate = vi.fn()
-vi.mock("react-router-dom", async () => {
-  const mod =
-    await vi.importActual<typeof import("react-router-dom")>("react-router-dom")
-  return {
-    ...mod,
-    useNavigate: () => mockedUseNavigate,
-  }
-})
+import { ToastContainer } from "react-toastify"
 
 const renderHeader = () => {
   render(
     <MemoryRouter>
       <AuthProvider>
         <Header />
+        <ToastContainer />
       </AuthProvider>
     </MemoryRouter>,
   )
@@ -63,7 +56,10 @@ describe("Header component", () => {
     })
     fireEvent.click(screen.getByText("ログアウト"))
     await waitFor(() => {
-      expect(mockedUseNavigate).toHaveBeenCalledWith("/auth/login")
+      expect(
+        screen.getByText(messages.logoutSuccessfulMessage),
+      ).toBeInTheDocument(),
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/auth/login")
     })
   })
 })

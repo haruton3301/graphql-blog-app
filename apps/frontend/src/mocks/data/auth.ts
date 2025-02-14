@@ -4,5 +4,11 @@ export const mockUser = {
   name: "Mock User",
 }
 
+export const mockExistingUser = {
+  id: 2,
+  email: "user2@example.com",
+  name: "Exsisting User",
+}
+
 export const mockPassword = "password123"
 export const mockToken = "fake-jwt-token"

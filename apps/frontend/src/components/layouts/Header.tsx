@@ -1,6 +1,8 @@
+import messages from "@/libs/constants/messages"
 import site from "@/libs/constants/site"
 import { useAuth } from "@/providers/auth"
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 export const Header: React.FC = () => {
   const { isLoggedIn, user, logout } = useAuth()
@@ -8,6 +10,7 @@ export const Header: React.FC = () => {
 
   const handleLogout = () => {
     logout()
+    toast.success(messages.logoutSuccessfulMessage)
     navigate("/auth/login")
   }
 

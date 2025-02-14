@@ -1,19 +1,10 @@
+import { mockedUseNavigate } from "@/__tests__/setup"
 import { AuthLayout } from "@/components/layouts/AuthLayout"
 import { removeToken, setToken } from "@/libs/utils/localStorage"
 import { mockToken } from "@/mocks/data/auth"
 import { AuthProvider } from "@/providers/auth"
 import { render, screen, waitFor } from "@testing-library/react"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
-
-const mockedUseNavigate = vi.fn()
-vi.mock("react-router-dom", async () => {
-  const mod =
-    await vi.importActual<typeof import("react-router-dom")>("react-router-dom")
-  return {
-    ...mod,
-    useNavigate: () => mockedUseNavigate,
-  }
-})
 
 const renderAuthLayout = () => {
   render(

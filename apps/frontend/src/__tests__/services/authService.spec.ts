@@ -1,13 +1,13 @@
 import { ApolloError } from "@apollo/client"
 import { authService } from "../../libs/services"
-import { mockPassword, mockUser } from "../../mocks/data/auth"
+import { mockExistingUser, mockPassword, mockUser } from "../../mocks/data/auth"
 
 describe("AuthService", () => {
   describe("Register", () => {
     const registerUser = {
-      name: "John Doe",
-      email: "test@example.com",
-      password: "password123",
+      name: mockUser.name,
+      email: mockUser.email,
+      password: mockPassword,
     }
 
     it("should register a new user", async () => {
@@ -46,10 +46,16 @@ describe("AuthService", () => {
 
     it("should throw error for duplicate email", async () => {
       await expect(
-        authService.register({ ...registerUser, email: "user@example.com" }),
+        authService.register({
+          ...registerUser,
+          email: mockExistingUser.email,
+        }),
       ).rejects.toThrowError(ApolloError)
       await expect(
-        authService.register({ ...registerUser, email: "user@example.com" }),
+        authService.register({
+          ...registerUser,
+          email: mockExistingUser.email,
+        }),
       ).rejects.toThrowError(
         expect.objectContaining({
           message: expect.stringContaining("Email already taken"),
