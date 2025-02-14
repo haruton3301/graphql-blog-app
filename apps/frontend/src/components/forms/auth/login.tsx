@@ -4,7 +4,6 @@ import Card from "@/components/common/Card"
 import messages from "@/libs/constants/messages"
 import { LoginData, loginSchema } from "@/libs/validations/auth"
 import { useAuth } from "@/providers/auth"
-import { ApolloError } from "@apollo/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -38,7 +37,7 @@ export default function LoginForm() {
     } catch (error) {
       setIsSubmitting(false)
 
-      if (error instanceof ApolloError) {
+      if (error instanceof Error) {
         switch (error.message) {
           case "Invalid credentials":
             toast.error(messages.invalidCredentialsMessage)

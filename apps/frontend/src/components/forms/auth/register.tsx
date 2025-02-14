@@ -5,7 +5,6 @@ import messages from "@/libs/constants/messages"
 import { authService } from "@/libs/services"
 import { RegisterData, registerSchema } from "@/libs/validations/auth"
 import { useAuth } from "@/providers/auth"
-import { ApolloError } from "@apollo/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -43,7 +42,7 @@ export default function RegisterForm() {
     } catch (error) {
       setIsSubmitting(false)
 
-      if (error instanceof ApolloError) {
+      if (error instanceof Error) {
         switch (error.message) {
           case "Email already taken":
             toast.error(messages.emailAlreadyTakenMessage)

@@ -1,4 +1,3 @@
-import { ApolloError } from "@apollo/client"
 import { authService } from "../../libs/services"
 import { mockExistingUser, mockPassword, mockUser } from "../../mocks/data/auth"
 
@@ -22,9 +21,6 @@ describe("AuthService", () => {
         password: "",
       }
       await expect(authService.register(invalidUser)).rejects.toThrowError(
-        ApolloError,
-      )
-      await expect(authService.register(invalidUser)).rejects.toThrowError(
         expect.objectContaining({
           message: expect.stringContaining("Illegal arguments"),
         }),
@@ -32,9 +28,6 @@ describe("AuthService", () => {
     })
 
     it("should throw error for invalid email format", async () => {
-      await expect(
-        authService.register({ ...registerUser, email: "invalid-email" }),
-      ).rejects.toThrowError(ApolloError)
       await expect(
         authService.register({ ...registerUser, email: "invalid-email" }),
       ).rejects.toThrowError(
@@ -45,12 +38,6 @@ describe("AuthService", () => {
     })
 
     it("should throw error for duplicate email", async () => {
-      await expect(
-        authService.register({
-          ...registerUser,
-          email: mockExistingUser.email,
-        }),
-      ).rejects.toThrowError(ApolloError)
       await expect(
         authService.register({
           ...registerUser,
@@ -81,9 +68,6 @@ describe("AuthService", () => {
         password: "",
       }
       await expect(authService.login(invalidParams)).rejects.toThrowError(
-        ApolloError,
-      )
-      await expect(authService.login(invalidParams)).rejects.toThrowError(
         expect.objectContaining({
           message: expect.stringContaining("Illegal arguments"),
         }),
@@ -95,9 +79,6 @@ describe("AuthService", () => {
         email: mockUser.email,
         password: "wrongpassword",
       }
-      await expect(authService.login(incorrectParams)).rejects.toThrowError(
-        ApolloError,
-      )
       await expect(authService.login(incorrectParams)).rejects.toThrowError(
         expect.objectContaining({
           message: expect.stringContaining("Invalid credentials"),
