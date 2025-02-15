@@ -57,6 +57,7 @@ export class PostService {
     const response = await client.query({
       query: PostDocument,
       variables: params,
+      fetchPolicy: "network-only",
     })
 
     return response.data?.post ?? null
@@ -66,6 +67,7 @@ export class PostService {
     const response = await client.query({
       query: PostsDocument,
       variables: params,
+      fetchPolicy: "network-only",
     })
 
     return response.data?.posts ?? []

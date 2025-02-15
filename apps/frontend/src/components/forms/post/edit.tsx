@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import PostForm from "./common/PostForm"
+import { DeletePostButton } from "./delete"
 
 type Props = { postId: string }
 
@@ -49,12 +50,17 @@ export default function EditPostForm({ postId }: Props) {
   if (!defaultValues) return <Loader />
 
   return (
-    <PostForm
-      title="投稿を編集"
-      submitLabel="保存"
-      defaultValues={defaultValues}
-      onSubmit={handleSubmit}
-      isSubmitting={isSubmitting}
-    />
+    <>
+      <div className="flex justify-end mb-2 px-3">
+        <DeletePostButton postId={postId} />
+      </div>
+      <PostForm
+        title="投稿を編集"
+        submitLabel="保存"
+        defaultValues={defaultValues}
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+      />
+    </>
   )
 }

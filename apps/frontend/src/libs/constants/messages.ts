@@ -10,11 +10,11 @@ const messages = {
   logoutSuccessfulMessage: "ログアウトしました",
 
   NotAuthorizedMessage: "アクセスできません",
-  postNotFoundMessage: "日報が存在しません",
-  postCreatedMessage: "日報を作成しました",
-  postUpdatedMessage: "日報を更新しました",
-  postDeletedMessage: "日報を削除しました",
-  postNotExistMessage: "日報がありません",
+  postNotFoundMessage: "投稿が存在しません",
+  postCreatedMessage: "投稿を作成しました",
+  postUpdatedMessage: "投稿を更新しました",
+  postDeletedMessage: "投稿を削除しました",
+  postNotExistMessage: "投稿がありません",
 }
 
 export default messages

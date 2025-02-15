@@ -5,7 +5,7 @@ export const RootLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="bg-slate-100">
+      <main className="pb-6">
         <Outlet />
       </main>
     </>

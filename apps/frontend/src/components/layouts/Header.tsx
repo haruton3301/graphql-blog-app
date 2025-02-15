@@ -23,7 +23,12 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-3">
           {isLoggedIn && user ? (
             <>
-              <p>{user.name}</p>
+              <Link to={`/users/${user.id}`} className="hover:underline">
+                {user.name}
+              </Link>
+              <Link to="/posts/create" className="btn btn-primary">
+                投稿
+              </Link>
               <button onClick={handleLogout} className="btn btn-primary">
                 ログアウト
               </button>

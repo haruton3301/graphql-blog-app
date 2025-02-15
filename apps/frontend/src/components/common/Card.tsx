@@ -7,13 +7,12 @@ type CardProps = {
 
 export default function Card({ children, className }: CardProps) {
   return (
-    <div
-      className={clsx(
-        "w-full mx-3 p-6 rounded-lg bg-white shadow-sm",
-        className,
-      )}
-    >
-      {children}
+    <div className="px-3">
+      <div
+        className={clsx("w-full p-6 rounded-lg bg-white shadow-sm", className)}
+      >
+        {children}
+      </div>
     </div>
   )
 }
